@@ -1,6 +1,11 @@
  $(function () {
 
-   var url = "";
+   var url = window.location.search.match(/url=([^&]+)/);
+   if (url && url.length > 1) {
+     url = decodeURIComponent(url[1]);
+   } else {
+     url = "http://petstore.swagger.io/v2/swagger.json";
+   }
 
    // Pre load translate...
    if(window.SwaggerTranslator) {
