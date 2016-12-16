@@ -1,11 +1,14 @@
- $(function () {
-
+  $(function () {
    var url = window.location.search.match(/url=([^&]+)/);
    if (url && url.length > 1) {
      url = decodeURIComponent(url[1]);
    } else {
      url = "http://petstore.swagger.io/v2/swagger.json";
    }
+
+   hljs.configure({
+     highlightSizeThreshold: 5000
+   });
 
    // Pre load translate...
    if(window.SwaggerTranslator) {
@@ -19,47 +22,26 @@
        if(typeof initOAuth == "function") {
          initOAuth({
            clientId: "your-client-id",
-           clientSecret: "your-client-secret",
+           clientSecret: "your-client-secret-if-required",
            realm: "your-realms",
-           appName: "your-app-name", 
-           scopeSeparator: ","
+           appName: "your-app-name",
+           scopeSeparator: " ",
+           additionalQueryStringParams: {}
          });
        }
 
        if(window.SwaggerTranslator) {
          window.SwaggerTranslator.translate();
        }
-
-       $('pre code').each(function(i, e) {
-         hljs.highlightBlock(e)
-       });
-
-       addApiKeyAuthorization();
      },
      onFailure: function(data) {
        log("Unable to Load SwaggerUI");
      },
      docExpansion: "none",
-     apisSorter: "alpha",
+     jsonEditor: false,
+     defaultModelRendering: 'schema',
      showRequestHeaders: false
    });
-
-   function addApiKeyAuthorization(){
-     var key = encodeURIComponent($('#input_apiKey')[0].value);
-     if(key && key.trim() != "") {
-         var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
-         window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
-         log("added key " + key);
-     }
-   }
-
-   $('#input_apiKey').change(addApiKeyAuthorization);
-
-   // if you have an apiKey you would like to pre-populate on the page for demonstration purposes...
-   /*
-     var apiKey = "myApiKeyXXXX123456789";
-     $('#input_apiKey').val(apiKey);
-   */
 
    window.swaggerUi.load();
 
@@ -68,4 +50,4 @@
        console.log.apply(console, arguments);
      }
    }
-});
+ });
