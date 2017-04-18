@@ -8,9 +8,9 @@
    "homepage_url": "https://github.com/mshauneu/chrome-swagger-ui",
 
    "icons": {
-      "16" : "swagger-ui/dist/images/favicon-16x16.png",
-      "64" : "swagger-ui/dist/images/favicon-32x32.png",
-      "128" : "swagger-ui/dist/images/favicon-32x32.png"
+      "16" : "swagger-ui/dist/favicon-16x16.png",
+      "64" : "swagger-ui/dist/favicon-32x32.png",
+      "128" : "swagger-ui/dist/favicon-32x32.png"
    },
 
    "permissions": [
@@ -24,8 +24,8 @@
    }, 
    "browser_action": {
       "default_icon": {
-         "19": "swagger-ui/dist/images/favicon-16x16.png",
-         "38": "swagger-ui/dist/images/favicon-32x32.png"
+         "19": "swagger-ui/dist/favicon-16x16.png",
+         "38": "swagger-ui/dist/favicon-32x32.png"
       },
       "default_title": "Swagger UI Console"
    }
